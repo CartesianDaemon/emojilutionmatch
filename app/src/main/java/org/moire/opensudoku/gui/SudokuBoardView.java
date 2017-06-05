@@ -448,7 +448,7 @@ public class SudokuBoardView extends View {
 						if (mHighlightWrongVals && !cell.isValid()) {
 							cellValuePaint = mCellValueInvalidPaint;
 						}
-						canvas.drawText(Integer.toString(value),
+						canvas.drawText(String.valueOf((char)('A'+value-1)),
 								cellLeft + mNumberLeft,
 								cellTop + mNumberTop - numberAscent,
 								cellValuePaint);
