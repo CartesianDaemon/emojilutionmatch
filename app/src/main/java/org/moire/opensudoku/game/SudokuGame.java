@@ -43,6 +43,8 @@ public class SudokuGame {
 	private String mNote;
 	private CellCollection mCells;
 
+	private int score = 0;
+
 	private OnPuzzleSolvedListener mOnPuzzleSolvedListener;
 	private CommandStack mCommandStack;
 	// Time when current activity has become active. 
@@ -64,7 +66,7 @@ public class SudokuGame {
 		mState = GAME_STATE_NOT_STARTED;
 	}
 
-	public void saveState(Bundle outState) {
+	public void saveState(Bundle outState) { //MYTODO save score etc
 		outState.putLong("id", mId);
 		outState.putString("note", mNote);
 		outState.putLong("created", mCreated);
@@ -168,6 +170,43 @@ public class SudokuGame {
 		return mId;
 	}
 
+	public void consumeMatchingLines(Cell hint_cell)
+	{
+		mCells.clearHighlights();
+
+		int x0 = hint_cell.getColumnIndex();
+		int y0 = hint_cell.getRowIndex();
+		int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
+		for (xa = x0; xa>=0 && mCells.getCell(xa,y0).getValue()==hint_cell.getValue(); xa--);
+		for (xb = x0; xb< 9 && mCells.getCell(xb,y0).getValue()==hint_cell.getValue(); xb++);
+		for (ya = y0; ya>=0 && mCells.getCell(x0,ya).getValue()==hint_cell.getValue(); ya--);
+		for (yb = y0; yb< 9 && mCells.getCell(x0,yb).getValue()==hint_cell.getValue(); yb++);
+
+		if ( xb-xa+1 >= 3)
+		{
+			score += scoreForNFoods(xb-xa+1);
+			for (int x = xa; x<=xb; x++)
+			{
+				mCells.getCell(x,y0).setValue(0);
+				// TODO: mark for highlight
+			}
+		}
+		if ( yb-ya+1 >= 3)
+		{
+			score += scoreForNFoods(yb-ya+1);
+			for (int y = ya; y<=yb; y++)
+			{
+				mCells.getCell(x0,y).setValue(0);
+				// TODO: mark for highlight
+			}
+		}
+	}
+
+	private int scoreForNFoods(int n)
+	{
+		return n*10;
+	}
+
 	/**
 	 * Sets value for the given cell. 0 means empty cell.
 	 *
@@ -182,17 +221,10 @@ public class SudokuGame {
 			throw new IllegalArgumentException("Value must be between 0-9.");
 		}
 
-		if (cell.isEditable()) {
-			executeCommand(new SetCellValueCommand(cell, value));
+		executeCommand(new SetCellValueCommand(cell, value));
 
-			validate();
-			if (isCompleted()) {
-				finish();
-				if (mOnPuzzleSolvedListener != null) {
-					mOnPuzzleSolvedListener.onPuzzleSolved();
-				}
-			}
-		}
+		consumeMatchingLines(cell);
+
 	}
 
 	/**
@@ -260,7 +292,7 @@ public class SudokuGame {
 	 * Pauses game-play (for example if activity pauses).
 	 */
 	public void pause() {
-		// save time we have spent playing so far - it will be reseted after resuming 
+		// save time we have spent playing so far - it will be reseted after resuming
 		mTime += SystemClock.uptimeMillis() - mActiveFromTime;
 		mActiveFromTime = -1;
 
@@ -285,6 +317,7 @@ public class SudokuGame {
 				if (cell.isEditable()) {
 					cell.setValue(0);
 					cell.setNote(new CellNote());
+					cell.mHighlight = false;
 				}
 			}
 		}

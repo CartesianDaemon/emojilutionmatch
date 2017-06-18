@@ -143,6 +143,18 @@ public class CellCollection {
 		return mCells[rowIndex][colIndex];
 	}
 
+	public void clearHighlights() {
+		mOnChangeEnabled = false;
+		for (int r = 0; r < SUDOKU_SIZE; r++) {
+			for (int c = 0; c < SUDOKU_SIZE; c++) {
+				mCells[r][c].mHighlight = false;
+			}
+		}
+		mOnChangeEnabled = true;
+		onChange();
+	}
+
+	// TODO: Remove
 	public void markAllCellsAsValid() {
 		mOnChangeEnabled = false;
 		for (int r = 0; r < SUDOKU_SIZE; r++) {

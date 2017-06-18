@@ -40,6 +40,8 @@ public class Cell {
 	private CellGroup mColumn; // column containing this cell
 
 	private int mValue;
+	public boolean mHighlight; // Highlights squares just emptied. May or may not be game relevant, but used by UI
+
 	private CellNote mNote;
 	private boolean mEditable;
 	private boolean mValid;

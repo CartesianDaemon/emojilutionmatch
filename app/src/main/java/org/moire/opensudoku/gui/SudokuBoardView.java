@@ -406,7 +406,7 @@ public class SudokuBoardView extends View {
 		int paddingLeft = getPaddingLeft();
 		int paddingTop = getPaddingTop();
 
-		// draw secondary background
+		// draw secondary background (what is this?)
 		if (mBackgroundColorSecondary.getColor() != NO_COLOR) {
 			canvas.drawRect(3 * mCellWidth, 0, 6 * mCellWidth, 3 * mCellWidth, mBackgroundColorSecondary);
 			canvas.drawRect(0, 3 * mCellWidth, 3 * mCellWidth, 6 * mCellWidth, mBackgroundColorSecondary);
@@ -433,19 +433,19 @@ public class SudokuBoardView extends View {
 					cellTop = Math.round((row * mCellHeight) + paddingTop);
 
 					// draw read-only field background
-					if (!cell.isEditable() && hasBackgroundColorReadOnly) {
-						if (mBackgroundColorReadOnly.getColor() != NO_COLOR) {
-							canvas.drawRect(
-									cellLeft, cellTop,
-									cellLeft + mCellWidth, cellTop + mCellHeight,
-									mBackgroundColorReadOnly);
-						}
-					}
+					//if (!cell.isEditable() && hasBackgroundColorReadOnly) {
+					//	if (mBackgroundColorReadOnly.getColor() != NO_COLOR) {
+					//		canvas.drawRect(
+					//				cellLeft, cellTop,
+					//				cellLeft + mCellWidth, cellTop + mCellHeight,
+					//				mBackgroundColorReadOnly);
+					//	}
+					//}
 
 					// draw cell Text
 					int value = cell.getValue();
 					if (value != 0) {
-						Paint cellValuePaint = cell.isEditable() ? mCellValuePaint : mCellValueReadonlyPaint;
+						Paint cellValuePaint = cell.mHighlight ? mCellValueReadonlyPaint : mCellValuePaint;
 
 						if (mHighlightWrongVals && !cell.isValid()) {
 							cellValuePaint = mCellValueInvalidPaint;
@@ -514,15 +514,15 @@ public class SudokuBoardView extends View {
 		int sectorLineWidth2 = sectorLineWidth1 + (mSectorLineWidth % 2);
 
 		// draw sector (thick) lines
-		for (int c = 0; c <= 9; c = c + 3) {
-			float x = (c * mCellWidth) + paddingLeft;
-			canvas.drawRect(x - sectorLineWidth1, paddingTop, x + sectorLineWidth2, height, mSectorLinePaint);
-		}
+		//for (int c = 0; c <= 9; c = c + 3) {
+		//	float x = (c * mCellWidth) + paddingLeft;
+		//	canvas.drawRect(x - sectorLineWidth1, paddingTop, x + sectorLineWidth2, height, mSectorLinePaint);
+		//}
 
-		for (int r = 0; r <= 9; r = r + 3) {
-			float y = r * mCellHeight + paddingTop;
-			canvas.drawRect(paddingLeft, y - sectorLineWidth1, width, y + sectorLineWidth2, mSectorLinePaint);
-		}
+		//for (int r = 0; r <= 9; r = r + 3) {
+		//	float y = r * mCellHeight + paddingTop;
+		//	canvas.drawRect(paddingLeft, y - sectorLineWidth1, width, y + sectorLineWidth2, mSectorLinePaint);
+		//}
 
 	}
 
