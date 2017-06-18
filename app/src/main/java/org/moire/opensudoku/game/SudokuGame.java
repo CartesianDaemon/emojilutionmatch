@@ -223,7 +223,7 @@ public class SudokuGame {
 
 		executeCommand(new SetCellValueCommand(cell, value));
 
-		consumeMatchingLines(cell);
+		//consumeMatchingLines(cell);
 
 	}
 
