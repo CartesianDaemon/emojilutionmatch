@@ -51,6 +51,8 @@ public class CellCollection {
 	// Cell's data.
 	private Cell[][] mCells;
 
+	private int score = 0;
+
 	// Helper arrays, contains references to the groups of cells, which should contain unique
 	// numbers.
 	private CellGroup[] mSectors;
@@ -95,6 +97,50 @@ public class CellCollection {
 		return true;
 	}
 
+	public void consumeMatchingLines(Cell hint_cell)
+	{
+		mOnChangeEnabled = false;
+		clearHighlights();
+
+		int d_score = 0;
+
+		int x0 = hint_cell.getColumnIndex();
+		int y0 = hint_cell.getRowIndex();
+		int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
+		for (xa = x0; xa>=0 && getCell(xa,y0).getValue()==hint_cell.getValue(); xa--);
+		for (xb = x0; xb< 9 && getCell(xb,y0).getValue()==hint_cell.getValue(); xb++);
+		for (ya = y0; ya>=0 && getCell(x0,ya).getValue()==hint_cell.getValue(); ya--);
+		for (yb = y0; yb< 9 && getCell(x0,yb).getValue()==hint_cell.getValue(); yb++);
+
+		if ( xb-xa+1 >= 3)
+		{
+			d_score += scoreForNFoods(xb-xa+1);
+			for (int x = xa; x<=xb; x++)
+			{
+				getCell(x,y0).setValue(9);
+				// TODO: mark for highlight
+			}
+		}
+		if ( yb-ya+1 >= 3)
+		{
+			d_score += scoreForNFoods(yb-ya+1);
+			for (int y = ya; y<=yb; y++)
+			{
+				getCell(x0,y).setValue(9);
+				// TODO: mark for highlight
+			}
+		}
+
+		score += d_score;
+
+		mOnChangeEnabled = true;
+		onChange();
+	}
+
+	private int scoreForNFoods(int n)
+	{
+		return n*10;
+	}
 
 	/**
 	 * Generates debug game.
