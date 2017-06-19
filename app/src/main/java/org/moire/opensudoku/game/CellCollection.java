@@ -99,9 +99,9 @@ public class CellCollection {
 
 	public void consumeMatchingLines(Cell hint_cell)
 	{
-		mOnChangeEnabled = false;
 		clearHighlights();
 
+		mOnChangeEnabled = false;
 		int d_score = 0;
 
 		int x0 = hint_cell.getColumnIndex();
@@ -112,19 +112,19 @@ public class CellCollection {
 		for (ya = y0; ya>=0 && getCell(x0,ya).getValue()==hint_cell.getValue(); ya--);
 		for (yb = y0; yb< 9 && getCell(x0,yb).getValue()==hint_cell.getValue(); yb++);
 
-		if ( xb-xa+1 >= 3)
+		if ( xb-xa-1 >= 3)
 		{
-			d_score += scoreForNFoods(xb-xa+1);
-			for (int x = xa; x<=xb; x++)
+			d_score += scoreForNFoods(xb-xa-1);
+			for (int x = xa+1; x<xb; x++)
 			{
 				getCell(x,y0).setValue(9);
 				// TODO: mark for highlight
 			}
 		}
-		if ( yb-ya+1 >= 3)
+		if ( yb-ya-1 >= 3)
 		{
-			d_score += scoreForNFoods(yb-ya+1);
-			for (int y = ya; y<=yb; y++)
+			d_score += scoreForNFoods(yb-ya-1);
+			for (int y = ya+1; y<yb; y++)
 			{
 				getCell(x0,y).setValue(9);
 				// TODO: mark for highlight
