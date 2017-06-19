@@ -276,11 +276,9 @@ public class SudokuGame {
 		for (int r = 0; r < CellCollection.SUDOKU_SIZE; r++) {
 			for (int c = 0; c < CellCollection.SUDOKU_SIZE; c++) {
 				Cell cell = mCells.getCell(r, c);
-				if (cell.isEditable()) {
-					cell.setValue(0);
-					cell.setNote(new CellNote());
-					cell.mHighlight = false;
-				}
+				cell.setValue(0);
+				cell.setNote(new CellNote());
+				cell.mHighlight = false;
 			}
 		}
 		validate();

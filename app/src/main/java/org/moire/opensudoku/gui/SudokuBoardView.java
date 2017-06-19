@@ -631,12 +631,10 @@ public class SudokuBoardView extends View {
 	}
 
 	private void setCellValue(Cell cell, int value) {
-		if (cell.isEditable()) {
-			if (mGame != null) {
-				mGame.setCellValue(cell, value);
-			} else {
-				cell.setValue(value);
-			}
+		if (mGame != null) {
+			mGame.setCellValue(cell, value);
+		} else {
+			cell.setValue(value);
 		}
 	}
 
