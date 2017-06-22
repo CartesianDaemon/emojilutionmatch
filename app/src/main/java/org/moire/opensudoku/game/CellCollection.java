@@ -104,8 +104,8 @@ public class CellCollection {
 		mOnChangeEnabled = false;
 		int d_score = 0;
 
-		int x0 = hint_cell.getColumnIndex();
-		int y0 = hint_cell.getRowIndex();
+		int x0 = hint_cell.getRowIndex();
+		int y0 = hint_cell.getColumnIndex();
 		int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
 		for (xa = x0; xa>=0 && getCell(xa,y0).getValue()==hint_cell.getValue(); xa--);
 		for (xb = x0; xb< 9 && getCell(xb,y0).getValue()==hint_cell.getValue(); xb++);

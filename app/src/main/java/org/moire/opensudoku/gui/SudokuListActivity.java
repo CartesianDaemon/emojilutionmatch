@@ -496,12 +496,16 @@ public class SudokuListActivity extends ListActivity {
 					// TODO: still can be faster, I don't have to call initCollection and read notes
 					CellCollection cells = null;
 					;
-					try {
-						cells = CellCollection.deserialize(data);
-					} catch (Exception e) {
-						long id = c.getLong(c.getColumnIndex(SudokuColumns._ID));
-						Log.e(TAG, String.format("Exception occurred when deserializing puzzle with id %s.", id), e);
-					}
+					//TODO: Allow deserealise but create empty board by default
+
+					cells = CellCollection.createEmpty();
+
+					// try {
+					//	cells = CellCollection.deserialize(data);
+					// } catch (Exception e) {
+					//	long id = c.getLong(c.getColumnIndex(SudokuColumns._ID));
+					//	Log.e(TAG, String.format("Exception occurred when deserializing puzzle with id %s.", id), e);
+					// }
 					SudokuBoardView board = (SudokuBoardView) view;
 					board.setReadOnly(true);
 					board.setFocusable(false);

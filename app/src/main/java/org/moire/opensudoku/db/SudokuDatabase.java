@@ -325,7 +325,8 @@ public class SudokuDatabase {
 				s = new SudokuGame();
 				s.setId(id);
 				s.setCreated(created);
-				s.setCells(CellCollection.deserialize(data));
+				//s.setCells(CellCollection.deserialize(data)); // TODO: Don't do this empty function, create empty board at higher level
+				s.setCells(CellCollection.createEmpty());
 				s.setLastPlayed(lastPlayed);
 				s.setState(state);
 				s.setTime(time);
