@@ -36,6 +36,12 @@ public class SetCellValueCommand extends AbstractCellCommand {
 		mValue = value;
 	}
 
+	public SetCellValueCommand(Cell cell) {
+		mCellRow = cell.getRowIndex();
+		mCellColumn = cell.getColumnIndex();
+		mValue = -1;
+	}
+
 	SetCellValueCommand() {
 
 	}
@@ -64,7 +70,8 @@ public class SetCellValueCommand extends AbstractCellCommand {
 	void execute() {
 		Cell cell = getCells().getCell(mCellRow, mCellColumn);
 		mOldValue = cell.getValue();
-		cell.setValue(mValue);
+		cell.setValue(getCells().popNext());
+		// TODO: How to cope with undos?
 	}
 
 	@Override

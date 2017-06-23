@@ -22,8 +22,10 @@ package org.moire.opensudoku.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
@@ -53,6 +55,11 @@ public class CellCollection {
 
 	private int score = 0;
 
+	public static final int next_size = 3;
+	private LinkedList<Integer> next_food = new LinkedList<Integer>(); // Or arraylist?
+
+	Random rand = new Random();
+
 	// Helper arrays, contains references to the groups of cells, which should contain unique
 	// numbers.
 	private CellGroup[] mSectors;
@@ -78,7 +85,26 @@ public class CellCollection {
 			}
 		}
 
-		return new CellCollection(cells);
+		CellCollection ret = new CellCollection(cells);
+
+		ret.fillNext();
+
+		return ret;
+	}
+
+	private void fillNext()
+	{
+		while (next_food.size() < next_size)
+		{
+			next_food.push(rand.nextInt(5)+1);
+		}
+	}
+
+	public int popNext()
+	{
+		int ret = next_food.pop();
+		fillNext();
+		return ret;
 	}
 
 	/**
