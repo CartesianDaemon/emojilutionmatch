@@ -143,7 +143,7 @@ public class CellCollection {
 			d_score += scoreForNFoods(xb-xa-1);
 			for (int x = xa+1; x<xb; x++)
 			{
-				getCell(x,y0).setValue(9);
+				getCell(x,y0).setValue(0);
 				// TODO: mark for highlight
 			}
 		}
@@ -152,7 +152,7 @@ public class CellCollection {
 			d_score += scoreForNFoods(yb-ya-1);
 			for (int y = ya+1; y<yb; y++)
 			{
-				getCell(x0,y).setValue(9);
+				getCell(x0,y).setValue(0);
 				// TODO: mark for highlight
 			}
 		}
