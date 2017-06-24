@@ -183,9 +183,11 @@ public class SudokuGame {
 			throw new IllegalArgumentException("Value must be between 0-9.");
 		}
 
-		executeCommand(new SetCellValueCommand(cell, value));
+		if (cell.getValue() ==0) {
+			executeCommand(new SetCellValueCommand(cell, value));
 
-		mCells.consumeMatchingLines(cell);
+			mCells.consumeMatchingLines(cell);
+		}
 
 	}
 
