@@ -639,7 +639,7 @@ public class SudokuBoardView extends View {
 	}
 
 	private void setCellNote(Cell cell, CellNote note) {
-		if (cell.isEditable()) {
+		if (cell.getValue()==0) {
 			if (mGame != null) {
 				mGame.setCellNote(cell, note);
 			} else {
