@@ -99,35 +99,35 @@ public class IMNumpad extends InputMethod {
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View controlPanel = inflater.inflate(R.layout.im_numpad, null);
 
-		mNumberButtons = new HashMap<Integer, Button>();
-		mNumberButtons.put(1, (Button) controlPanel.findViewById(R.id.button_1));
-		mNumberButtons.put(2, (Button) controlPanel.findViewById(R.id.button_2));
-		mNumberButtons.put(3, (Button) controlPanel.findViewById(R.id.button_3));
-		mNumberButtons.put(4, (Button) controlPanel.findViewById(R.id.button_4));
-		mNumberButtons.put(5, (Button) controlPanel.findViewById(R.id.button_5));
-		mNumberButtons.put(6, (Button) controlPanel.findViewById(R.id.button_6));
-		mNumberButtons.put(7, (Button) controlPanel.findViewById(R.id.button_7));
-		mNumberButtons.put(8, (Button) controlPanel.findViewById(R.id.button_8));
-		mNumberButtons.put(9, (Button) controlPanel.findViewById(R.id.button_9));
-		mNumberButtons.put(0, (Button) controlPanel.findViewById(R.id.button_clear));
-
-		for (Integer num : mNumberButtons.keySet()) {
-			Button b = mNumberButtons.get(num);
-			b.setTag(num);
-			b.setOnClickListener(mNumberButtonClick);
-		}
-
-		mSwitchNumNoteButton = (ImageButton) controlPanel.findViewById(R.id.switch_num_note);
-		mSwitchNumNoteButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditMode = mEditMode == MODE_EDIT_VALUE ? MODE_EDIT_NOTE : MODE_EDIT_VALUE;
-				update();
-			}
-
-		});
-
+//		mNumberButtons = new HashMap<Integer, Button>();
+//		mNumberButtons.put(1, (Button) controlPanel.findViewById(R.id.button_1));
+//		mNumberButtons.put(2, (Button) controlPanel.findViewById(R.id.button_2));
+//		mNumberButtons.put(3, (Button) controlPanel.findViewById(R.id.button_3));
+//		mNumberButtons.put(4, (Button) controlPanel.findViewById(R.id.button_4));
+//		mNumberButtons.put(5, (Button) controlPanel.findViewById(R.id.button_5));
+//		mNumberButtons.put(6, (Button) controlPanel.findViewById(R.id.button_6));
+//		mNumberButtons.put(7, (Button) controlPanel.findViewById(R.id.button_7));
+//		mNumberButtons.put(8, (Button) controlPanel.findViewById(R.id.button_8));
+//		mNumberButtons.put(9, (Button) controlPanel.findViewById(R.id.button_9));
+//		mNumberButtons.put(0, (Button) controlPanel.findViewById(R.id.button_clear));
+//
+//		for (Integer num : mNumberButtons.keySet()) {
+//			Button b = mNumberButtons.get(num);
+//			b.setTag(num);
+//			b.setOnClickListener(mNumberButtonClick);
+//		}
+//
+//		mSwitchNumNoteButton = (ImageButton) controlPanel.findViewById(R.id.switch_num_note);
+//		mSwitchNumNoteButton.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				mEditMode = mEditMode == MODE_EDIT_VALUE ? MODE_EDIT_NOTE : MODE_EDIT_VALUE;
+//				update();
+//			}
+//
+//		});
+//
 		return controlPanel;
 
 	}
@@ -201,37 +201,39 @@ public class IMNumpad extends InputMethod {
 
 
 	private void update() {
-		switch (mEditMode) {
-			case MODE_EDIT_NOTE:
-				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);
-				break;
-			case MODE_EDIT_VALUE:
-				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_grey);
-				break;
-		}
+		// TODO: Update text_score and text_next
 
-		Map<Integer, Integer> valuesUseCount = null;
-		if (mHighlightCompletedValues || mShowNumberTotals)
-			valuesUseCount = mGame.getCells().getValuesUseCount();
-
-		if (mHighlightCompletedValues) {
-			for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
-				boolean highlightValue = entry.getValue() >= CellCollection.SUDOKU_SIZE;
-				Button b = mNumberButtons.get(entry.getKey());
-				if (highlightValue) {
-                    b.getBackground().setColorFilter(0xFF1B5E20, PorterDuff.Mode.MULTIPLY);
-				} else {
-                    b.getBackground().setColorFilter(null);
-				}
-			}
-		}
-
-		if (mShowNumberTotals) {
-			for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
-				Button b = mNumberButtons.get(entry.getKey());
-				b.setText(entry.getKey() + " (" + entry.getValue() + ")");
-			}
-		}
+//		switch (mEditMode) {
+//			case MODE_EDIT_NOTE:
+//				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);
+//				break;
+//			case MODE_EDIT_VALUE:
+//				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_grey);
+//				break;
+//		}
+//
+//		Map<Integer, Integer> valuesUseCount = null;
+//		if (mHighlightCompletedValues || mShowNumberTotals)
+//			valuesUseCount = mGame.getCells().getValuesUseCount();
+//
+//		if (mHighlightCompletedValues) {
+//			for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
+//				boolean highlightValue = entry.getValue() >= CellCollection.SUDOKU_SIZE;
+//				Button b = mNumberButtons.get(entry.getKey());
+//				if (highlightValue) {
+//                    b.getBackground().setColorFilter(0xFF1B5E20, PorterDuff.Mode.MULTIPLY);
+//				} else {
+//                    b.getBackground().setColorFilter(null);
+//				}
+//			}
+//		}
+//
+//		if (mShowNumberTotals) {
+//			for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
+//				Button b = mNumberButtons.get(entry.getKey());
+//				b.setText(entry.getKey() + " (" + entry.getValue() + ")");
+//			}
+//		}
 	}
 
 	@Override
