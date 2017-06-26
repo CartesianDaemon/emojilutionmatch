@@ -19,37 +19,6 @@
             android:focusableInTouchMode="true"
             android:layout_weight="1"
             android:text="1" />
-        <Button
-            android:id="@+id/button_2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="2" />
-        <Button
-            android:id="@+id/button_3"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="3" />
-        <Button
-            android:id="@+id/button_4"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="4" />
-
-        <ImageButton
-            android:id="@+id/switch_num_note"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside" />
 
     </LinearLayout>
 
