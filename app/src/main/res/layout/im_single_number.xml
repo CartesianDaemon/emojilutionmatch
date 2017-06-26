@@ -67,43 +67,6 @@
             android:focusableInTouchMode="true"
             android:layout_weight="1"
             android:text="6" />
-        <Button
-            android:id="@+id/button_7"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="7" />
-        <Button
-            android:id="@+id/button_8"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="8" />
-        <Button
-            android:id="@+id/button_9"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="9" />
-        <Button
-            android:id="@+id/button_clear"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="C" />
-        <Button
-            android:id="@+id/switch_input_mode"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" />
 
     </LinearLayout>
 

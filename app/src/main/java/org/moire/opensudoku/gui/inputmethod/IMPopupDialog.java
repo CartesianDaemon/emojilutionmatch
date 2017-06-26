@@ -272,10 +272,10 @@ public class IMPopupDialog extends Dialog {
 			b.setOnClickListener(editNumberButtonClickListener);
 		}
 
-		Button closeButton = (Button) v.findViewById(R.id.button_close);
-		closeButton.setOnClickListener(closeButtonListener);
-		Button clearButton = (Button) v.findViewById(R.id.button_clear);
-		clearButton.setOnClickListener(clearButtonListener);
+		//Button closeButton = (Button) v.findViewById(R.id.button_close);
+		//closeButton.setOnClickListener(closeButtonListener);
+		//Button clearButton = (Button) v.findViewById(R.id.button_clear);
+		//clearButton.setOnClickListener(clearButtonListener);
 
 		return v;
 	}
@@ -305,10 +305,10 @@ public class IMPopupDialog extends Dialog {
 			b.setOnCheckedChangeListener(editNoteCheckedChangeListener);
 		}
 
-		Button closeButton = (Button) v.findViewById(R.id.button_close);
-		closeButton.setOnClickListener(closeButtonListener);
-		Button clearButton = (Button) v.findViewById(R.id.button_clear);
-		clearButton.setOnClickListener(clearButtonListener);
+		// Button closeButton = (Button) v.findViewById(R.id.button_close);
+		// closeButton.setOnClickListener(closeButtonListener);
+		// Button clearButton = (Button) v.findViewById(R.id.button_clear);
+		// clearButton.setOnClickListener(clearButtonListener);
 
 		return v;
 	}

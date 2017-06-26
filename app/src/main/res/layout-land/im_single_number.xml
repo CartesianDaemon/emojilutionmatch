@@ -116,19 +116,6 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:scaleType="centerInside" />
-        <Button
-            android:id="@+id/button_clear"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="C" />
-        <Button
-            android:id="@+id/switch_input_mode"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" />
 
     </LinearLayout>
 
