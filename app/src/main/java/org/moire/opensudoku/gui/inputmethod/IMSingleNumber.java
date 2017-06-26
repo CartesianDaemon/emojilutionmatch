@@ -34,6 +34,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import org.moire.opensudoku.R;
 import org.moire.opensudoku.game.Cell;
 import org.moire.opensudoku.game.CellCollection;
@@ -60,6 +62,9 @@ public class IMSingleNumber extends InputMethod {
 
 	private int mSelectedNumber = 1;
 	private int mEditMode = MODE_EDIT_VALUE;
+
+	private TextView mTxtScore;
+	private TextView mTxtNextFood;
 
 	private Handler mGuiHandler;
 	//private Map<Integer, Button> mNumberButtons;
@@ -119,6 +124,9 @@ public class IMSingleNumber extends InputMethod {
 	protected View createControlPanelView() {
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View controlPanel = inflater.inflate(R.layout.im_single_number, null);
+
+		mTxtScore = (TextView) controlPanel.findViewById(R.id.score);
+		mTxtScore.setText("Score: WIP");
 
 		return controlPanel;
 	}
