@@ -210,22 +210,7 @@ public class IMSingleNumber extends InputMethod {
 
 	@Override
 	protected void onCellTapped(Cell cell) {
-		int selNumber = mSelectedNumber;
-
-		switch (mEditMode) {
-			case MODE_EDIT_NOTE:
-				if (selNumber == 0) {
-					mGame.setCellNote(cell, CellNote.EMPTY);
-				} else if (selNumber > 0 && selNumber <= 9) {
-					mGame.setCellNote(cell, cell.getNote().toggleNumber(selNumber));
-				}
-				break;
-			case MODE_EDIT_VALUE:
-				if (selNumber >= 0 && selNumber <= 9) {
-				}
-				break;
-		}
-
+		mGame.setCellValue(cell, 0); // Number not used
 	}
 
 	@Override
