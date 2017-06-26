@@ -126,7 +126,7 @@ public class IMSingleNumber extends InputMethod {
 		View controlPanel = inflater.inflate(R.layout.im_single_number, null);
 
 		mTxtScore = (TextView) controlPanel.findViewById(R.id.score);
-		mTxtScore.setText("Score: WIP");
+		mTxtNextFood = (TextView) controlPanel.findViewById(R.id.next_food);
 
 		return controlPanel;
 	}
@@ -161,6 +161,7 @@ public class IMSingleNumber extends InputMethod {
 	};
 
 	private void update() {
+		mTxtScore.setText("Score: " + String.valueOf( this.mGame.getCells().getScore()  ));
 		switch (mEditMode) {
 			//case MODE_EDIT_NOTE:
 				//mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);

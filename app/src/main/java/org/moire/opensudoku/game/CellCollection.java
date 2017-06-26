@@ -226,6 +226,16 @@ public class CellCollection {
 		onChange();
 	}
 
+	public int getScore()
+	{
+		return score;
+	}
+
+	public LinkedList<Integer> getNextFood()
+	{
+		return next_food;
+	}
+
 	// TODO: Remove
 	public void markAllCellsAsValid() {
 		mOnChangeEnabled = false;
