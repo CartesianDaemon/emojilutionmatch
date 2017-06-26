@@ -62,8 +62,7 @@ public class IMSingleNumber extends InputMethod {
 	private int mEditMode = MODE_EDIT_VALUE;
 
 	private Handler mGuiHandler;
-	private Map<Integer, Button> mNumberButtons;
-	private ImageButton mSwitchNumNoteButton;
+	//private Map<Integer, Button> mNumberButtons;
 
 	public IMSingleNumber() {
 		super();
@@ -121,36 +120,6 @@ public class IMSingleNumber extends InputMethod {
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View controlPanel = inflater.inflate(R.layout.im_single_number, null);
 
-		mNumberButtons = new HashMap<Integer, Button>();
-		mNumberButtons.put(1, (Button) controlPanel.findViewById(R.id.button_1));
-		mNumberButtons.put(2, (Button) controlPanel.findViewById(R.id.button_2));
-		mNumberButtons.put(3, (Button) controlPanel.findViewById(R.id.button_3));
-		mNumberButtons.put(4, (Button) controlPanel.findViewById(R.id.button_4));
-		mNumberButtons.put(5, (Button) controlPanel.findViewById(R.id.button_5));
-		mNumberButtons.put(6, (Button) controlPanel.findViewById(R.id.button_6));
-		mNumberButtons.put(7, (Button) controlPanel.findViewById(R.id.button_7));
-		mNumberButtons.put(8, (Button) controlPanel.findViewById(R.id.button_8));
-		mNumberButtons.put(9, (Button) controlPanel.findViewById(R.id.button_9));
-		mNumberButtons.put(0, (Button) controlPanel.findViewById(R.id.button_clear));
-
-		for (Integer num : mNumberButtons.keySet()) {
-			Button b = mNumberButtons.get(num);
-			b.setTag(num);
-			b.setOnClickListener(mNumberButtonClicked);
-            b.setOnTouchListener(mNumberButtonTouched);
-		}
-
-		mSwitchNumNoteButton = (ImageButton) controlPanel.findViewById(R.id.switch_num_note);
-		mSwitchNumNoteButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditMode = mEditMode == MODE_EDIT_VALUE ? MODE_EDIT_NOTE : MODE_EDIT_VALUE;
-				update();
-			}
-
-		});
-
 		return controlPanel;
 	}
 
@@ -185,12 +154,12 @@ public class IMSingleNumber extends InputMethod {
 
 	private void update() {
 		switch (mEditMode) {
-			case MODE_EDIT_NOTE:
-				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);
-				break;
-			case MODE_EDIT_VALUE:
-				mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_grey);
-				break;
+			//case MODE_EDIT_NOTE:
+				//mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);
+				//break;
+			//case MODE_EDIT_VALUE:
+				//mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_grey);
+				//break;
 		}
 
 		// TODO: sometimes I change background too early and button stays in pressed state
@@ -198,19 +167,6 @@ public class IMSingleNumber extends InputMethod {
 		mGuiHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				for (Button b : mNumberButtons.values()) {
-					if (b.getTag().equals(mSelectedNumber)) {
-						b.setTextAppearance(mContext, android.R.style.TextAppearance_Large);
-                        /* Use focus instead color */
-						/*LightingColorFilter selBkgColorFilter = new LightingColorFilter(
-								mContext.getResources().getColor(R.color.im_number_button_selected_background), 0);
-						b.getBackground().setColorFilter(selBkgColorFilter);*/
-                        b.requestFocus();
-					} else {
-						b.setTextAppearance(mContext, android.R.style.TextAppearance_Widget_Button);
-						b.getBackground().setColorFilter(null);
-					}
-				}
 
 				Map<Integer, Integer> valuesUseCount = null;
 				if (mHighlightCompletedValues || mShowNumberTotals)
@@ -221,28 +177,19 @@ public class IMSingleNumber extends InputMethod {
 					for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
 						boolean highlightValue = entry.getValue() >= CellCollection.SUDOKU_SIZE;
 						if (highlightValue) {
-							Button b = mNumberButtons.get(entry.getKey());
+							//Button b = mNumberButtons.get(entry.getKey());
 							/*if (b.getTag().equals(mSelectedNumber)) {
 								b.setTextColor(completedTextColor);
 							} else {
                                 b.getBackground().setColorFilter(0xFF008800, PorterDuff.Mode.MULTIPLY);
 							}*/
                             // Only set background color
-                            b.getBackground().setColorFilter(0xFF1B5E20, PorterDuff.Mode.MULTIPLY);
-							b.setTextColor(Color.WHITE);
+                            //b.getBackground().setColorFilter(0xFF1B5E20, PorterDuff.Mode.MULTIPLY);
+							//b.setTextColor(Color.WHITE);
 						}
 					}
 				}
 
-				if (mShowNumberTotals) {
-					for (Map.Entry<Integer, Integer> entry : valuesUseCount.entrySet()) {
-						Button b = mNumberButtons.get(entry.getKey());
-						if (!b.getTag().equals(mSelectedNumber))
-							b.setText(entry.getKey() + " (" + entry.getValue() + ")");
-						else
-							b.setText("" + entry.getKey());
-					}
-				}
 			}
 		}, 100);
 	}
@@ -266,20 +213,6 @@ public class IMSingleNumber extends InputMethod {
 				break;
 			case MODE_EDIT_VALUE:
 				if (selNumber >= 0 && selNumber <= 9) {
-					if (!mNumberButtons.get(selNumber).isEnabled()) {
-						// Number requested has been disabled but it is still selected. This means that
-						// this number can be no longer entered, however any of the existing fields
-						// with this number can be deleted by repeated touch
-						if (selNumber == cell.getValue()) {
-							mGame.setCellValue(cell, 0);
-						}
-					} else {
-						// Normal flow, just set the value (or clear it if it is repeated touch)
-						if (selNumber == cell.getValue()) {
-							selNumber = 0;
-						}
-						mGame.setCellValue(cell, selNumber);
-					}
 				}
 				break;
 		}

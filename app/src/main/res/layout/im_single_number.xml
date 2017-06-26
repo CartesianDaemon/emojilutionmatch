@@ -43,14 +43,7 @@
             android:focusableInTouchMode="true"
             android:layout_weight="1"
             android:text="4" />
-        <Button
-            android:id="@+id/button_5"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_weight="1"
-            android:text="5" />
+
         <ImageButton
             android:id="@+id/switch_num_note"
             android:layout_width="fill_parent"

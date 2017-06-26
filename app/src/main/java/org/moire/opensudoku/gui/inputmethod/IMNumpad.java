@@ -50,7 +50,6 @@ public class IMNumpad extends InputMethod {
 	private static final int MODE_EDIT_NOTE = 1;
 
 	private Cell mSelectedCell;
-	private ImageButton mSwitchNumNoteButton;
 
 	private int mEditMode = MODE_EDIT_VALUE;
 
@@ -99,25 +98,25 @@ public class IMNumpad extends InputMethod {
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View controlPanel = inflater.inflate(R.layout.im_numpad, null);
 
-//		mNumberButtons = new HashMap<Integer, Button>();
-//		mNumberButtons.put(1, (Button) controlPanel.findViewById(R.id.button_1));
-//		mNumberButtons.put(2, (Button) controlPanel.findViewById(R.id.button_2));
-//		mNumberButtons.put(3, (Button) controlPanel.findViewById(R.id.button_3));
-//		mNumberButtons.put(4, (Button) controlPanel.findViewById(R.id.button_4));
-//		mNumberButtons.put(5, (Button) controlPanel.findViewById(R.id.button_5));
-//		mNumberButtons.put(6, (Button) controlPanel.findViewById(R.id.button_6));
-//		mNumberButtons.put(7, (Button) controlPanel.findViewById(R.id.button_7));
-//		mNumberButtons.put(8, (Button) controlPanel.findViewById(R.id.button_8));
-//		mNumberButtons.put(9, (Button) controlPanel.findViewById(R.id.button_9));
-//		mNumberButtons.put(0, (Button) controlPanel.findViewById(R.id.button_clear));
-//
-//		for (Integer num : mNumberButtons.keySet()) {
-//			Button b = mNumberButtons.get(num);
-//			b.setTag(num);
-//			b.setOnClickListener(mNumberButtonClick);
-//		}
-//
-//		mSwitchNumNoteButton = (ImageButton) controlPanel.findViewById(R.id.switch_num_note);
+		mNumberButtons = new HashMap<Integer, Button>();
+		mNumberButtons.put(1, (Button) controlPanel.findViewById(R.id.button_1));
+		mNumberButtons.put(2, (Button) controlPanel.findViewById(R.id.button_2));
+		mNumberButtons.put(3, (Button) controlPanel.findViewById(R.id.button_3));
+		mNumberButtons.put(4, (Button) controlPanel.findViewById(R.id.button_4));
+		mNumberButtons.put(5, (Button) controlPanel.findViewById(R.id.button_5));
+		mNumberButtons.put(6, (Button) controlPanel.findViewById(R.id.button_6));
+		mNumberButtons.put(7, (Button) controlPanel.findViewById(R.id.button_7));
+		mNumberButtons.put(8, (Button) controlPanel.findViewById(R.id.button_8));
+		mNumberButtons.put(9, (Button) controlPanel.findViewById(R.id.button_9));
+		mNumberButtons.put(0, (Button) controlPanel.findViewById(R.id.button_clear));
+
+		for (Integer num : mNumberButtons.keySet()) {
+			Button b = mNumberButtons.get(num);
+			b.setTag(num);
+			b.setOnClickListener(mNumberButtonClick);
+		}
+
+		//mSwitchNumNoteButton = (ImageButton) controlPanel.findViewById(R.id.switch_num_note);
 //		mSwitchNumNoteButton.setOnClickListener(new OnClickListener() {
 //
 //			@Override
@@ -127,7 +126,7 @@ public class IMNumpad extends InputMethod {
 //			}
 //
 //		});
-//
+
 		return controlPanel;
 
 	}
