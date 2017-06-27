@@ -161,7 +161,9 @@ public class IMSingleNumber extends InputMethod {
 	};
 
 	private void update() {
-		mTxtScore.setText("Score: " + String.valueOf( this.mGame.getCells().getScore()  ));
+		mTxtScore.setText("Score: " + String.valueOf( mGame.getCells().getScore()  ));
+		mTxtNextFood.setText("Next tile: " + mGame.getCells().getNextFoodString());
+
 		switch (mEditMode) {
 			//case MODE_EDIT_NOTE:
 				//mSwitchNumNoteButton.setImageResource(R.drawable.ic_edit_white);

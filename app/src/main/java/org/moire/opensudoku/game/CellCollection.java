@@ -231,9 +231,19 @@ public class CellCollection {
 		return score;
 	}
 
-	public LinkedList<Integer> getNextFood()
+	private String[] food_vals = {"\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"};
+
+	public String FoodIntToString(int value)
 	{
-		return next_food;
+		if (value==0) return ""; // Shouldn't be needed?
+
+		return food_vals[value-1];
+	}
+
+	public String getNextFoodString()
+	{
+		// Currently returns first only, consider if more would be more interesting
+		return FoodIntToString(next_food.getFirst());
 	}
 
 	// TODO: Remove

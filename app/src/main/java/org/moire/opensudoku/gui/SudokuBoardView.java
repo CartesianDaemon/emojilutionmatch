@@ -420,8 +420,6 @@ public class SudokuBoardView extends View {
 
 			boolean hasBackgroundColorReadOnly = mBackgroundColorReadOnly.getColor() != NO_COLOR;
 
-			String[] vals = {"\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"};
-
 			float numberAscent = mCellValuePaint.ascent();
 			float noteAscent = mCellNotePaint.ascent();
 			float noteWidth = mCellWidth / 3f;
@@ -450,7 +448,8 @@ public class SudokuBoardView extends View {
 						if (mHighlightWrongVals && !cell.isValid()) {
 							cellValuePaint = mCellValueInvalidPaint;
 						}
-						canvas.drawText(vals[value-1],//String.valueOf((char)('A'+value-1)),
+
+						canvas.drawText(mCells.FoodIntToString(value),//String.valueOf((char)('A'+value-1)),
 								cellLeft + mNumberLeft,
 								cellTop + mNumberTop - numberAscent,
 								cellValuePaint);
