@@ -15,9 +15,12 @@
             android:id="@+id/score"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:textSize="32sp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="30sp"
             android:text="score" />
 
     </LinearLayout>
@@ -30,9 +33,12 @@
 
         <TextView
             android:id="@+id/next_food"
+            android:textSize="32sp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:focusable="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="30sp"
             android:focusableInTouchMode="true"
             android:layout_weight="1"
             android:text="next_food" />
