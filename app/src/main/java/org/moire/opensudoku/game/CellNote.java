@@ -126,8 +126,6 @@ public class CellNote {
 	 * @return New CellNote instance with changes.
 	 */
 	public CellNote toggleNumber(int number) {
-		if (number < 1 || number > 9)
-			throw new IllegalArgumentException("Number must be between 1-9.");
 
 		Set<Integer> notedNumbers = new HashSet<Integer>(getNotedNumbers());
 		if (notedNumbers.contains(number)) {
@@ -162,8 +160,6 @@ public class CellNote {
 	 * @return
 	 */
 	public CellNote removeNumber(int number) {
-		if (number < 1 || number > 9)
-			throw new IllegalArgumentException("Number must be between 1-9.");
 
 		Set<Integer> notedNumbers = new HashSet<Integer>(getNotedNumbers());
 		notedNumbers.remove(number);

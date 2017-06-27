@@ -63,10 +63,6 @@ public class Cell {
 	}
 
 	private Cell(int value, CellNote note, boolean editable, boolean valid) {
-		if (value < 0 || value > 9) {
-			throw new IllegalArgumentException("Value must be between 0-9.");
-		}
-
 		mValue = value;
 		mNote = note;
 		mEditable = editable;
@@ -150,9 +146,6 @@ public class Cell {
 	 * @param value 1-9 or 0 if cell should be empty.
 	 */
 	public void setValue(int value) {
-		if (value < 0 || value > 9) {
-			throw new IllegalArgumentException("Value must be between 0-9.");
-		}
 		mValue = value;
 		onChange();
 	}

@@ -140,13 +140,17 @@ public class CellCollection {
 		for (ya = y0; ya>=0 && isMatch(getCell(x0,ya).getValue(),hint_cell.getValue()); ya--);
 		for (yb = y0; yb< 9 && isMatch(getCell(x0,yb).getValue(),hint_cell.getValue()); yb++);
 
+		// TODO: Deal with hearts. Only match if there's one of each. Give bonus for different types?
+
+		int evolved_value = evolveTo(hint_cell.getValue());
+
 		if ( xb-xa-1 >= 3)
 		{
 			for (int x = xa+1; x<xb; x++)
 			{
-				d_score += scoreForTile(getCell(x,y0).getValue());
+				Cell cell = getCell(x,y0);
+				d_score += scoreForTile(cell.getValue());
 				getCell(x,y0).setValue(0);
-				// TODO: mark for highlight
 			}
 		}
 		if ( yb-ya-1 >= 3)
@@ -155,9 +159,10 @@ public class CellCollection {
 			{
 				d_score += scoreForTile(getCell(x0,y).getValue());
 				getCell(x0,y).setValue(0);
-				// TODO: mark for highlight
 			}
 		}
+
+		if ( xb-xa-1 >= 3 || yb-ya-1 >= 3 ) hint_cell.setValue(evolved_value);
 
 		score += d_score;
 
@@ -230,9 +235,9 @@ public class CellCollection {
 
 	//                0     1     2    3       4            5       6       7       8           9     10       11       12
 	// enum TileKey { NONE EGG, CHICK, HEN, YELLOW_HEART, LIZARD, SNAKE, DRAGON, GREEN_HEART, SHELL, SHRIMP, OCTOPUS, BLUE_HEART }
-	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14","A",
-										"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","A",
-										"\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","A",};
+	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14","\uD83D\uDC9B",
+										"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","\uD83D\uDC9A",
+										"\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","\uD83D\uDC99",};
 			// "\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"}; // Was: fruit/food
 
 	private Integer[] getInitialCandidates()
@@ -264,6 +269,13 @@ public class CellCollection {
 	public String FoodIntToString(int value)
 	{
 		return food_vals[value];
+	}
+
+	private int evolveTo(int value)
+	{
+		if (value==0) return 0;
+		else if (value%4==0) return 0;
+		else return value+1;
 	}
 
 	public String getNextFoodString()
@@ -375,7 +387,7 @@ public class CellCollection {
 			for (int c = 0; c < CellCollection.SUDOKU_SIZE; c++) {
 				int value = getCell(r, c).getValue();
 				if (value != 0) {
-					valuesUseCount.put(value, valuesUseCount.get(value) + 1);
+					// valuesUseCount.put(value, valuesUseCount.get(value) + 1);
 				}
 			}
 		}
