@@ -94,9 +94,11 @@ public class CellCollection {
 
 	private void fillNext()
 	{
+		Integer[] candidates = getInitialCandidates();
 		while (next_food.size() < next_size)
 		{
-			next_food.push(rand.nextInt(5)+1);
+			int idx = rand.nextInt(candidates.length);
+			next_food.push(candidates[idx]);
 		}
 	}
 
@@ -133,25 +135,25 @@ public class CellCollection {
 		int x0 = hint_cell.getRowIndex();
 		int y0 = hint_cell.getColumnIndex();
 		int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
-		for (xa = x0; xa>=0 && getCell(xa,y0).getValue()==hint_cell.getValue(); xa--);
-		for (xb = x0; xb< 9 && getCell(xb,y0).getValue()==hint_cell.getValue(); xb++);
-		for (ya = y0; ya>=0 && getCell(x0,ya).getValue()==hint_cell.getValue(); ya--);
-		for (yb = y0; yb< 9 && getCell(x0,yb).getValue()==hint_cell.getValue(); yb++);
+		for (xa = x0; xa>=0 && isMatch(getCell(xa,y0).getValue(),hint_cell.getValue()); xa--);
+		for (xb = x0; xb< 9 && isMatch(getCell(xb,y0).getValue(),hint_cell.getValue()); xb++);
+		for (ya = y0; ya>=0 && isMatch(getCell(x0,ya).getValue(),hint_cell.getValue()); ya--);
+		for (yb = y0; yb< 9 && isMatch(getCell(x0,yb).getValue(),hint_cell.getValue()); yb++);
 
 		if ( xb-xa-1 >= 3)
 		{
-			d_score += scoreForNFoods(xb-xa-1);
 			for (int x = xa+1; x<xb; x++)
 			{
+				d_score += scoreForTile(getCell(x,y0).getValue());
 				getCell(x,y0).setValue(0);
 				// TODO: mark for highlight
 			}
 		}
 		if ( yb-ya-1 >= 3)
 		{
-			d_score += scoreForNFoods(yb-ya-1);
 			for (int y = ya+1; y<yb; y++)
 			{
+				d_score += scoreForTile(getCell(x0,y).getValue());
 				getCell(x0,y).setValue(0);
 				// TODO: mark for highlight
 			}
@@ -161,11 +163,6 @@ public class CellCollection {
 
 		mOnChangeEnabled = true;
 		onChange();
-	}
-
-	private int scoreForNFoods(int n)
-	{
-		return n*10;
 	}
 
 	/**
@@ -231,13 +228,42 @@ public class CellCollection {
 		return score;
 	}
 
-	private String[] food_vals = {"\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"};
+	//                0     1     2    3       4            5       6       7       8           9     10       11       12
+	// enum TileKey { NONE EGG, CHICK, HEN, YELLOW_HEART, LIZARD, SNAKE, DRAGON, GREEN_HEART, SHELL, SHRIMP, OCTOPUS, BLUE_HEART }
+	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14","A",
+										"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","A",
+										"\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","A",};
+			// "\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"}; // Was: fruit/food
+
+	private Integer[] getInitialCandidates()
+	{
+		Integer[] ret = {1,5,9};
+		return ret;
+	}
+
+	private Boolean isMatch(int aa, int bb)
+	{
+		if (aa==0 || bb==0) return false;
+		Boolean a_is_heart = (aa%4==0);
+		Boolean b_is_heart = (bb%4==0);
+		return aa==bb || a_is_heart&&b_is_heart;
+	}
+
+	private int scoreForTile(int n)
+	{
+		if (n==0) return 0;
+		Integer[] scores = {10,30,90,500};
+		return scores[(n-1)%4];
+	}
+
+	private int scoreForNFoods(int n)
+	{
+		return n*10;
+	}
 
 	public String FoodIntToString(int value)
 	{
-		if (value==0) return ""; // Shouldn't be needed?
-
-		return food_vals[value-1];
+		return food_vals[value];
 	}
 
 	public String getNextFoodString()
