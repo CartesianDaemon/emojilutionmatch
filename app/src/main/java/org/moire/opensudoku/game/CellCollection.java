@@ -72,6 +72,11 @@ public class CellCollection {
 
 	private Cell selectedCell; // Cell user is in, only able to place in this one. Unrelated to old notion of "selected" in other classes.
 
+	public Cell getSelectedCell()
+	{
+		return selectedCell;
+	}
+
 	/**
 	 * Creates empty sudoku.
 	 *
@@ -310,9 +315,8 @@ public class CellCollection {
 		int cell_width_m = 10;
 		int x = ((int)(lat*111111/cell_width_m))%9;
 		int y = ((int)(lon*60000/cell_width_m))%9;
-		mCells[x][y].setValue(12);
-		//selectedCell
-		// OnChange
+		selectedCell = mCells[y][x];
+		onChange();
 	}
 
 	/**

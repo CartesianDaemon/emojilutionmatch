@@ -471,9 +471,10 @@ public class SudokuBoardView extends View {
 			}
 
 			// highlight selected cell
-			if (!mReadonly && mSelectedCell != null) {
-				cellLeft = Math.round(mSelectedCell.getColumnIndex() * mCellWidth) + paddingLeft;
-				cellTop = Math.round(mSelectedCell.getRowIndex() * mCellHeight) + paddingTop;
+			if (mCells.getSelectedCell() != null)
+			{
+				cellLeft = Math.round(mCells.getSelectedCell().getColumnIndex() * mCellWidth) + paddingLeft;
+				cellTop = Math.round(mCells.getSelectedCell().getRowIndex() * mCellHeight) + paddingTop;
 				canvas.drawRect(
 						cellLeft, cellTop,
 						cellLeft + mCellWidth, cellTop + mCellHeight,
@@ -482,7 +483,7 @@ public class SudokuBoardView extends View {
 
 			// visually highlight cell under the finger (to cope with touch screen
 			// imprecision)
-			if (mHighlightTouchedCell && mTouchedCell != null) {
+			if (false && mHighlightTouchedCell && mTouchedCell != null) {
 				cellLeft = Math.round(mTouchedCell.getColumnIndex() * mCellWidth) + paddingLeft;
 				cellTop = Math.round(mTouchedCell.getRowIndex() * mCellHeight) + paddingTop;
 				canvas.drawRect(
