@@ -70,6 +70,8 @@ public class CellCollection {
 
 	private final List<OnChangeListener> mChangeListeners = new ArrayList<OnChangeListener>();
 
+	private Cell selectedCell; // Cell user is in, only able to place in this one. Unrelated to old notion of "selected" in other classes.
+
 	/**
 	 * Creates empty sudoku.
 	 *
@@ -298,7 +300,12 @@ public class CellCollection {
 
 	public void setLocation(double lat, double lon)
 	{
-		mCells[0][0].setValue(12);
+		int cell_width_m = 10;
+		int x = ((int)(lat*111111/cell_width_m))%9;
+		int y = ((int)(lon*60000/cell_width_m))%9;
+		mCells[x][y].setValue(12);
+		//selectedCell
+		// OnChange
 	}
 
 	/**
