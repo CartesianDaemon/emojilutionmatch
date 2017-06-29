@@ -180,7 +180,7 @@ public class SudokuGame {
 			throw new IllegalArgumentException("Cell cannot be null.");
 		}
 
-		if (cell.getValue() ==0) {
+		if (cell.getValue()==0 && cell == mCells.getSelectedCell()) {
 			executeCommand(new SetCellValueCommand(cell, value));
 
 			mCells.consumeMatchingLines(cell);
