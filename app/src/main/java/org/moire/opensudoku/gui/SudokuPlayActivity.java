@@ -500,6 +500,7 @@ public class SudokuPlayActivity extends Activity {
 			double longitude=location.getLongitude();
 			String msg="New Latitude: "+latitude + "New Longitude: "+longitude;
 			// Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
+			mSudokuGame.getCells().setLocation(latitude, longitude);
 		}
 
 		@Override

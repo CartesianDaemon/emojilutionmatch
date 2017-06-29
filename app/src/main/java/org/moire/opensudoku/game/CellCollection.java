@@ -296,6 +296,11 @@ public class CellCollection {
 		onChange();
 	}
 
+	public void setLocation(double lat, double lon)
+	{
+		mCells[0][0].setValue(12);
+	}
+
 	/**
 	 * Validates numbers in collection according to the sudoku rules. Cells with invalid
 	 * values are marked - you can use getInvalid method of cell to find out whether cell
