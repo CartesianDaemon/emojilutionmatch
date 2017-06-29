@@ -27,6 +27,8 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -98,6 +100,8 @@ public class SudokuPlayActivity extends Activity {
 
 	private HintsQueue mHintsQueue;
 
+	LocationManager locationManager;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -163,6 +167,13 @@ public class SudokuPlayActivity extends Activity {
 		mIMPopup = mIMControlPanel.getInputMethod(IMControlPanel.INPUT_METHOD_POPUP);
 		mIMSingleNumber = mIMControlPanel.getInputMethod(IMControlPanel.INPUT_METHOD_SINGLE_NUMBER);
 		mIMNumpad = mIMControlPanel.getInputMethod(IMControlPanel.INPUT_METHOD_NUMPAD);
+
+		locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
+		locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER,
+				200,
+				1, locationListenerGPS);
+		//isLocationEnabled();
+
 	}
 
 	@Override
@@ -481,4 +492,29 @@ public class SudokuPlayActivity extends Activity {
 		}
 
 	}
+
+	private final LocationListener locationListenerGPS=new LocationListener() {
+		@Override
+		public void onLocationChanged(android.location.Location location) {
+			double latitude=location.getLatitude();
+			double longitude=location.getLongitude();
+			String msg="New Latitude: "+latitude + "New Longitude: "+longitude;
+			// Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+
+		}
+	};
 }
