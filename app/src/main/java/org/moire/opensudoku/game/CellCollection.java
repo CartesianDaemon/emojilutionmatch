@@ -132,41 +132,48 @@ public class CellCollection {
 		clearHighlights();
 
 		mOnChangeEnabled = false;
-		int d_score = 0;
 
-		int x0 = hint_cell.getRowIndex();
-		int y0 = hint_cell.getColumnIndex();
-		int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
-		for (xa = x0; xa>=0 && isMatch(getCell(xa,y0).getValue(),hint_cell.getValue()); xa--);
-		for (xb = x0; xb< 9 && isMatch(getCell(xb,y0).getValue(),hint_cell.getValue()); xb++);
-		for (ya = y0; ya>=0 && isMatch(getCell(x0,ya).getValue(),hint_cell.getValue()); ya--);
-		for (yb = y0; yb< 9 && isMatch(getCell(x0,yb).getValue(),hint_cell.getValue()); yb++);
+		for (int more_to_do=1; more_to_do>0;--more_to_do) {
+			int d_score = 0;
 
-		// TODO: Deal with hearts. Only match if there's one of each. Give bonus for different types?
+			int x0 = hint_cell.getRowIndex();
+			int y0 = hint_cell.getColumnIndex();
+			int xa, xb, ya, yb; // TODO: Can move these into for statements or not?
+			for (xa = x0; xa >= 0 && isMatch(getCell(xa, y0).getValue(), hint_cell.getValue()); xa--)
+				;
+			for (xb = x0; xb < 9 && isMatch(getCell(xb, y0).getValue(), hint_cell.getValue()); xb++)
+				;
+			for (ya = y0; ya >= 0 && isMatch(getCell(x0, ya).getValue(), hint_cell.getValue()); ya--)
+				;
+			for (yb = y0; yb < 9 && isMatch(getCell(x0, yb).getValue(), hint_cell.getValue()); yb++)
+				;
 
-		int evolved_value = evolveTo(hint_cell.getValue());
+			// TODO: Deal with hearts. Only match if there's one of each. Give bonus for different types?
 
-		if ( xb-xa-1 >= 3)
-		{
-			for (int x = xa+1; x<xb; x++)
-			{
-				Cell cell = getCell(x,y0);
-				d_score += scoreForTile(cell.getValue());
-				getCell(x,y0).setValue(0);
+			int evolved_value = evolveTo(hint_cell.getValue());
+
+			if (xb - xa - 1 >= 3) {
+				for (int x = xa + 1; x < xb; x++) {
+					Cell cell = getCell(x, y0);
+					d_score += scoreForTile(cell.getValue());
+					getCell(x, y0).setValue(0);
+				}
 			}
-		}
-		if ( yb-ya-1 >= 3)
-		{
-			for (int y = ya+1; y<yb; y++)
-			{
-				d_score += scoreForTile(getCell(x0,y).getValue());
-				getCell(x0,y).setValue(0);
+			if (yb - ya - 1 >= 3) {
+				for (int y = ya + 1; y < yb; y++) {
+					d_score += scoreForTile(getCell(x0, y).getValue());
+					getCell(x0, y).setValue(0);
+				}
 			}
+
+			if (xb - xa - 1 >= 3 || yb - ya - 1 >= 3)
+			{
+				hint_cell.setValue(evolved_value);
+				more_to_do++;
+			}
+
+			score += d_score;
 		}
-
-		if ( xb-xa-1 >= 3 || yb-ya-1 >= 3 ) hint_cell.setValue(evolved_value);
-
-		score += d_score;
 
 		mOnChangeEnabled = true;
 		onChange();
