@@ -250,8 +250,11 @@ public class CellCollection {
 	//                0     1     2    3       4            5       6       7       8           9     10       11       12
 	// enum TileKey { NONE EGG, CHICK, HEN, YELLOW_HEART, LIZARD, SNAKE, DRAGON, GREEN_HEART, SHELL, SHRIMP, OCTOPUS, BLUE_HEART }
 	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14","\uD83D\uDC9B",
-										"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","\uD83D\uDC9A",
-										"\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","\uD83D\uDC99",};
+										//"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","\uD83D\uDC9A", // lizard snake dragon
+										"\uD83D\uDC0D","\uD83D\uDC0A","\uD83D\uDC09","\uD83D\uDC9A", // snake crocodile dragon
+										// "\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","\uD83D\uDC99",}; shell squid octopus
+										"\uD83D\uDC1F","\uD83D\uDC2C","\uD83D\uDC33","\uD83D\uDC99"
+										};
 			// "\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"}; // Was: fruit/food
 
 	private Integer[] getInitialCandidates()
