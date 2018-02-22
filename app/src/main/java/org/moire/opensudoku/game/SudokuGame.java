@@ -72,6 +72,7 @@ public class SudokuGame {
 		outState.putLong("time", mTime);
 		outState.putLong("lastPlayed", mLastPlayed);
 		outState.putString("cells", mCells.serialize());
+		outState.putInt("next_emoji", mCells.next_food.getFirst()); // MYTODO: cope with more than one value
 
 		mCommandStack.saveState(outState);
 	}
@@ -84,6 +85,7 @@ public class SudokuGame {
 		mTime = inState.getLong("time");
 		mLastPlayed = inState.getLong("lastPlayed");
 		mCells = CellCollection.deserialize(inState.getString("cells"));
+		mCells.next_food.push(inState.getInt("next_emoji"));
 
 		mCommandStack = new CommandStack(mCells);
 		mCommandStack.restoreState(inState);

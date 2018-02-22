@@ -56,7 +56,7 @@ public class CellCollection {
 	private int score = 0;
 
 	public static final int next_size = 3;
-	private LinkedList<Integer> next_food = new LinkedList<Integer>(); // Or arraylist?
+	public LinkedList<Integer> next_food = new LinkedList<Integer>(); // Or arraylist? // MYTODO: make private again, only used by savestate
 
 	Random rand = new Random();
 

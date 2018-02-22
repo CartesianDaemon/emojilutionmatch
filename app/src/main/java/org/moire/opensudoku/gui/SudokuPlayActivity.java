@@ -204,9 +204,9 @@ public class SudokuPlayActivity extends Activity {
 		//mIMPopup.setEnabled(gameSettings.getBoolean("im_popup", true));
 		//mIMSingleNumber.setEnabled(gameSettings.getBoolean("im_single_number", true));
 		//mIMNumpad.setEnabled(gameSettings.getBoolean("im_numpad", true));
-		//mIMPopup.setEnabled(false); // Remove?
+		mIMPopup.setEnabled(false); // Remove?
 		mIMSingleNumber.setEnabled(true);
-		//mIMNumpad.setEnabled(false); // Remove?
+		mIMNumpad.setEnabled(false); // Remove?
 		mIMNumpad.setMoveCellSelectionOnPress(gameSettings.getBoolean("im_numpad_move_right", false));
 		mIMPopup.setHighlightCompletedValues(gameSettings.getBoolean("highlight_completed_values", true));
 		mIMPopup.setShowNumberTotals(gameSettings.getBoolean("show_number_totals", false));
