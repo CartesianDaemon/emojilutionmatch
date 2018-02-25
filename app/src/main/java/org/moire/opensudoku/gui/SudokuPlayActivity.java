@@ -63,9 +63,9 @@ public class SudokuPlayActivity extends Activity {
 	public static final int MENU_ITEM_UNDO = Menu.FIRST + 3;
 	public static final int MENU_ITEM_HELP = Menu.FIRST + 4;
 	public static final int MENU_ITEM_SETTINGS = Menu.FIRST + 5;
-
 	public static final int MENU_ITEM_SET_CHECKPOINT = Menu.FIRST + 6;
 	public static final int MENU_ITEM_UNDO_TO_CHECKPOINT = Menu.FIRST + 7;
+	public static final int MENU_ITEM_CHEATMODE = Menu.FIRST + 8;
 
 	private static final int DIALOG_RESTART = 1;
 	private static final int DIALOG_WELL_DONE = 2;
@@ -287,7 +287,11 @@ public class SudokuPlayActivity extends Activity {
 		//		.setShortcut('1', 'u')
 		//		.setIcon(R.drawable.ic_undo);
 
-		menu.add(0, MENU_ITEM_RESTART, 0, R.string.restart)
+		menu.add(0, MENU_ITEM_CHEATMODE, 0, "Cheat Mode") // TODO: String resource
+				.setShortcut('1', 'c')
+				.setIcon(R.drawable.ic_restore);
+
+		menu.add(0, MENU_ITEM_RESTART, 1, R.string.restart)
 				.setShortcut('7', 'r')
 				.setIcon(R.drawable.ic_restore);
 
@@ -351,6 +355,9 @@ public class SudokuPlayActivity extends Activity {
 		switch (item.getItemId()) {
 			case MENU_ITEM_RESTART:
 				showDialog(DIALOG_RESTART);
+				return true;
+			case MENU_ITEM_CHEATMODE:
+				mSudokuGame.getCells().toggleCheatMode();
 				return true;
 			case MENU_ITEM_CLEAR_ALL_NOTES:
 				showDialog(DIALOG_CLEAR_NOTES);
