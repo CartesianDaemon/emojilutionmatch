@@ -290,10 +290,13 @@ public class SudokuPlayActivity extends Activity {
 		menu.add(0, MENU_ITEM_CHEATMODE, 0, "Cheat Mode") // TODO: String resource
 				.setShortcut('1', 'c')
 				.setIcon(R.drawable.ic_restore);
+		menu.getItem(0).setCheckable(true);
+		menu.getItem(0).setChecked(mSudokuGame.getCells().mCheatMode>0);
 
 		menu.add(0, MENU_ITEM_RESTART, 1, R.string.restart)
 				.setShortcut('7', 'r')
 				.setIcon(R.drawable.ic_restore);
+
 
 		//menu.add(0, MENU_ITEM_CLEAR_ALL_NOTES, 2, R.string.clear_all_notes)
 		//		.setShortcut('3', 'a')
@@ -358,6 +361,7 @@ public class SudokuPlayActivity extends Activity {
 				return true;
 			case MENU_ITEM_CHEATMODE:
 				mSudokuGame.getCells().toggleCheatMode();
+				item.setChecked(mSudokuGame.getCells().mCheatMode>0);
 				return true;
 			case MENU_ITEM_CLEAR_ALL_NOTES:
 				showDialog(DIALOG_CLEAR_NOTES);
