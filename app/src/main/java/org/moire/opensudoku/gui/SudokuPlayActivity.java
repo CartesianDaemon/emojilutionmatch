@@ -283,33 +283,33 @@ public class SudokuPlayActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
-		menu.add(0, MENU_ITEM_UNDO, 0, R.string.undo)
-				.setShortcut('1', 'u')
-				.setIcon(R.drawable.ic_undo);
+		//menu.add(0, MENU_ITEM_UNDO, 0, R.string.undo)
+		//		.setShortcut('1', 'u')
+		//		.setIcon(R.drawable.ic_undo);
 
-		menu.add(0, MENU_ITEM_RESTART, 5, R.string.restart)
+		menu.add(0, MENU_ITEM_RESTART, 0, R.string.restart)
 				.setShortcut('7', 'r')
 				.setIcon(R.drawable.ic_restore);
 
-		menu.add(0, MENU_ITEM_CLEAR_ALL_NOTES, 2, R.string.clear_all_notes)
-				.setShortcut('3', 'a')
-				.setIcon(R.drawable.ic_delete);
+		//menu.add(0, MENU_ITEM_CLEAR_ALL_NOTES, 2, R.string.clear_all_notes)
+		//		.setShortcut('3', 'a')
+		//		.setIcon(R.drawable.ic_delete);
 
-		if (mFillInNotesEnabled) {
-			menu.add(0, MENU_ITEM_FILL_IN_NOTES, 1, R.string.fill_in_notes)
-					.setIcon(R.drawable.ic_edit_grey);
-		}
+		//if (mFillInNotesEnabled) {
+		//	menu.add(0, MENU_ITEM_FILL_IN_NOTES, 1, R.string.fill_in_notes)
+		//			.setIcon(R.drawable.ic_edit_grey);
+//		}
 
-        menu.add(0, MENU_ITEM_SET_CHECKPOINT, 3, R.string.set_checkpoint);
-        menu.add(0, MENU_ITEM_UNDO_TO_CHECKPOINT, 4, R.string.undo_to_checkpoint);
+        //menu.add(0, MENU_ITEM_SET_CHECKPOINT, 3, R.string.set_checkpoint);
+        //menu.add(0, MENU_ITEM_UNDO_TO_CHECKPOINT, 4, R.string.undo_to_checkpoint);
 
-		menu.add(0, MENU_ITEM_HELP, 7, R.string.help)
-				.setShortcut('0', 'h')
-				.setIcon(R.drawable.ic_help);
+		//menu.add(0, MENU_ITEM_HELP, 7, R.string.help)
+		//		.setShortcut('0', 'h')
+		//		.setIcon(R.drawable.ic_help);
 
-		menu.add(0, MENU_ITEM_SETTINGS, 6, R.string.settings)
-				.setShortcut('9', 's')
-				.setIcon(R.drawable.ic_settings);
+		//menu.add(0, MENU_ITEM_SETTINGS, 6, R.string.settings)
+		//		.setShortcut('9', 's')
+		//		.setIcon(R.drawable.ic_settings);
 
 		// Generate any additional actions that can be performed on the
 		// overall list.  In a normal install, there are no additional
@@ -327,20 +327,20 @@ public class SudokuPlayActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
 
-		if (mSudokuGame.getState() == SudokuGame.GAME_STATE_PLAYING) {
-			menu.findItem(MENU_ITEM_CLEAR_ALL_NOTES).setEnabled(true);
-			if (mFillInNotesEnabled) {
-				menu.findItem(MENU_ITEM_FILL_IN_NOTES).setEnabled(true);
-			}
-			menu.findItem(MENU_ITEM_UNDO).setEnabled(mSudokuGame.hasSomethingToUndo());
-			menu.findItem(MENU_ITEM_UNDO_TO_CHECKPOINT).setEnabled(mSudokuGame.hasUndoCheckpoint());
+		if (mSudokuGame.getState() == SudokuGame.GAME_STATE_PLAYING) { // TODO: Uncomment these lines if we put back those menu items
+			//menu.findItem(MENU_ITEM_CLEAR_ALL_NOTES).setEnabled(true);
+			//if (mFillInNotesEnabled) {
+			//	menu.findItem(MENU_ITEM_FILL_IN_NOTES).setEnabled(true);
+			//}
+			//menu.findItem(MENU_ITEM_UNDO).setEnabled(mSudokuGame.hasSomethingToUndo());
+			//menu.findItem(MENU_ITEM_UNDO_TO_CHECKPOINT).setEnabled(mSudokuGame.hasUndoCheckpoint());
 		} else {
-			menu.findItem(MENU_ITEM_CLEAR_ALL_NOTES).setEnabled(false);
-			if (mFillInNotesEnabled) {
-				menu.findItem(MENU_ITEM_FILL_IN_NOTES).setEnabled(false);
-			}
-			menu.findItem(MENU_ITEM_UNDO).setEnabled(false);
-			menu.findItem(MENU_ITEM_UNDO_TO_CHECKPOINT).setEnabled(false);
+			//menu.findItem(MENU_ITEM_CLEAR_ALL_NOTES).setEnabled(false);
+			//if (mFillInNotesEnabled) {
+			//	menu.findItem(MENU_ITEM_FILL_IN_NOTES).setEnabled(false);
+			//}
+			//menu.findItem(MENU_ITEM_UNDO).setEnabled(false);
+			//menu.findItem(MENU_ITEM_UNDO_TO_CHECKPOINT).setEnabled(false);
 		}
 
 		return true;
