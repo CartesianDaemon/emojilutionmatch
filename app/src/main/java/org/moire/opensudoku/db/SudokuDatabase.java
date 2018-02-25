@@ -325,8 +325,9 @@ public class SudokuDatabase {
 				s = new SudokuGame();
 				s.setId(id);
 				s.setCreated(created);
-				//s.setCells(CellCollection.deserialize(data)); // TODO: Don't do this empty function, create empty board at higher level
-				s.setCells(CellCollection.createEmpty());
+                CellCollection cells = CellCollection.deserialize(data);
+                cells.fillNext(); // TODO: actually save previously generated next emoji list
+				s.setCells(cells);
 				s.setLastPlayed(lastPlayed);
 				s.setState(state);
 				s.setTime(time);

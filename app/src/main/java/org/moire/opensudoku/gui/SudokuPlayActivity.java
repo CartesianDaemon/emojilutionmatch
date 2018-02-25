@@ -135,7 +135,12 @@ public class SudokuPlayActivity extends Activity {
 		// create sudoku game instance
 		if (savedInstanceState == null) {
 			// activity runs for the first time, read game from database
-			mSudokuGame = SudokuGame.createEmptyGame();
+			mSudokuGameID = 1; // Just always use the same saved game
+			mSudokuGame = mDatabase.getSudoku(mSudokuGameID);
+			if (mSudokuGame == null) {
+				mSudokuGame = SudokuGame.createEmptyGame();
+				mSudokuGame.setId(1);
+			}
 		} else {
 			mSudokuGame = new SudokuGame();
 

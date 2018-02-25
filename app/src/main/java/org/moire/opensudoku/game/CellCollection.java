@@ -99,7 +99,7 @@ public class CellCollection {
 		return ret;
 	}
 
-	private void fillNext()
+	public void fillNext() // TODO: make private again
 	{
 		Integer[] candidates = getInitialCandidates();
 		while (next_food.size() < next_size)
