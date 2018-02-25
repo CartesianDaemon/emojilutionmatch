@@ -21,6 +21,7 @@
 package org.moire.opensudoku.game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,7 +104,7 @@ public class CellCollection {
 
 	public void fillNext() // TODO: make private again
 	{
-		Integer[] candidates = getInitialCandidates();
+		int[] candidates = getInitialCandidates();
 		while (next_food.size() < next_size)
 		{
 			int idx = rand.nextInt(candidates.length);
@@ -157,7 +158,14 @@ public class CellCollection {
 
 			// TODO: Deal with hearts. Only match if there's one of each. Give bonus for different types?
 
-			int evolved_value = evolveTo(hint_cell.getValue());
+			int old_val =hint_cell.getValue();
+			int evolved_value = evolveTo(old_val);
+
+			// TODO: Move to separate function
+			if ( old_val%3==0 && old_val/3==mNUnlocked && old_val < food_vals.length - 1)
+			{
+				++mNUnlocked; // Unlock new set of three
+			}
 
 			if (xb - xa - 1 >= 3) {
 				for (int x = xa + 1; x < xb; x++) {
@@ -249,35 +257,37 @@ public class CellCollection {
 		return score;
 	}
 
-	//                0     1     2    3       4            5       6       7       8           9     10       11       12
-	// enum TileKey { NONE EGG, CHICK, HEN, YELLOW_HEART, LIZARD, SNAKE, DRAGON, GREEN_HEART, SHELL, SHRIMP, OCTOPUS, BLUE_HEART }
-	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14","\uD83D\uDC9B",
+	// enum TileKey {	NONE,	EGG, CHICK, HEN,
+	// 							LIZARD, SNAKE, DRAGON
+	// 							SHELL, SHRIMP, OCTOPUS }
+	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14",
 										//"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","\uD83D\uDC9A", // lizard snake dragon
-										"\uD83D\uDC0D","\uD83D\uDC0A","\uD83D\uDC09","\uD83D\uDC9A", // snake crocodile dragon
+										"\uD83D\uDC0D","\uD83D\uDC0A","\uD83D\uDC09",
 										// "\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","\uD83D\uDC99",}; shell squid octopus
-										"\uD83D\uDC1F","\uD83D\uDC2C","\uD83D\uDC33","\uD83D\uDC99"
+										"\uD83D\uDC1F","\uD83D\uDC2C","\uD83D\uDC33"
 										};
 			// "\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"}; // Was: fruit/food
 
-	private Integer[] getInitialCandidates()
+	private int[] getInitialCandidates()
 	{
-		Integer[] ret = {1,5,9};
+		int[] possibles = {1,4,7};
+		int[] ret = new int[mNUnlocked];
+		for(int i=0;i<mNUnlocked;++i) ret[i] = possibles[i]; // TODO: Proper syntax for this
 		return ret;
 	}
 
 	private Boolean isMatch(int aa, int bb)
 	{
 		if (aa==0 || bb==0) return false;
-		Boolean a_is_heart = (aa%4==0);
-		Boolean b_is_heart = (bb%4==0);
-		return aa==bb || a_is_heart&&b_is_heart;
+		return aa==bb;
 	}
 
 	private int scoreForTile(int n)
 	{
-		if (n==0) return 0;
-		Integer[] scores = {10,30,90,500};
-		return scores[(n-1)%4];
+		//if (n==0) return 0;
+		//Integer[] scores = {10,30,90,500};
+		//return scores[(n-1)%4];
+		return 10*n;
 	}
 
 	private int scoreForNFoods(int n)
@@ -293,7 +303,7 @@ public class CellCollection {
 	private int evolveTo(int value)
 	{
 		if (value==0) return 0;
-		else if (value%4==0) return 0;
+		else if (value%3==0) return 0;
 		else return value+1;
 	}
 
