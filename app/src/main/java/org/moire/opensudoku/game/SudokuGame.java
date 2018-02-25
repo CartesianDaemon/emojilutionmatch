@@ -182,8 +182,7 @@ public class SudokuGame {
 			throw new IllegalArgumentException("Cell cannot be null.");
 		}
 
-		boolean allow_cheat = false;
-		if (allow_cheat || cell.getValue()==0 && cell == mCells.getSelectedCell())
+		if ( cell.getValue()==0 && (mCells.mCheatMode>0 || cell == mCells.getSelectedCell() ))
 		{
 			executeCommand(new SetCellValueCommand(cell, value));
 
