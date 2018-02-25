@@ -54,6 +54,8 @@ public class CellCollection {
 	private Cell[][] mCells;
 
 	private int score = 0;
+	public int mNUnlocked = 1; // TODO: Create accessors etc
+	public int mCheatMode = 0; // TODO: Create accessors etc
 
 	public static final int next_size = 3;
 	public LinkedList<Integer> next_food = new LinkedList<Integer>(); // Or arraylist? // MYTODO: make private again, only used by savestate
@@ -469,8 +471,10 @@ public class CellCollection {
 				c = 0;
 			}
 		}
-
-		return new CellCollection(cells);
+		CellCollection cellCollection = new CellCollection(cells);
+		cellCollection.mNUnlocked = Integer.parseInt(data.nextToken());
+		cellCollection.mCheatMode = Integer.parseInt(data.nextToken());
+		return cellCollection;
 	}
 
 	/**
@@ -552,6 +556,8 @@ public class CellCollection {
 				cell.serialize(data);
 			}
 		}
+		data.append(mNUnlocked).append("|");
+		data.append(mCheatMode).append("|");
 	}
 
 	private static Pattern DATA_PATTERN_VERSION_PLAIN = Pattern.compile("^\\d{81}$");
