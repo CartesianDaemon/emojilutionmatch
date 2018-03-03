@@ -20,26 +20,19 @@
 
 package org.moire.opensudoku.gui.inputmethod;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.LightingColorFilter;
-import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.moire.opensudoku.R;
 import org.moire.opensudoku.game.Cell;
 import org.moire.opensudoku.game.CellCollection;
-import org.moire.opensudoku.game.CellNote;
 import org.moire.opensudoku.game.SudokuGame;
 import org.moire.opensudoku.game.CellCollection.OnChangeListener;
 import org.moire.opensudoku.gui.HintsQueue;
@@ -164,8 +157,8 @@ public class IMSingleNumber extends InputMethod {
 
 	private void update() {
 		mTxtScore.setText("Score: " + String.valueOf( mGame.getCells().getScore()  ));
-		mTxtNextEmoji.setText("Next tile: " + mGame.getCells().getNextFoodString());
-		mTxtUnlocked.setText("Unlocked: " + mGame.getCells().getNextFoodString());
+		mTxtNextEmoji.setText("Next tile: " + mGame.getCells().getNextEmojisString());
+		mTxtUnlocked.setText("Unlocked: " + mGame.getCells().getUnlockedEmojisString());
 
 		switch (mEditMode) {
 			//case MODE_EDIT_NOTE:

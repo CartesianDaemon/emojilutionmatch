@@ -297,7 +297,7 @@ public class CellCollection {
 		return n*10;
 	}
 
-	public String FoodIntToString(int value)
+	public String IdxToEmoji(int value)
 	{
 		return emoji_chars[value];
 	}
@@ -309,10 +309,19 @@ public class CellCollection {
 		else return value+1;
 	}
 
-	public String getNextFoodString()
+	public String getNextEmojisString()
 	{
 		// Currently returns first only, consider if more would be more interesting
-		return FoodIntToString(next_food.getFirst());
+		return IdxToEmoji(next_food.getFirst());
+	}
+
+	public String getUnlockedEmojisString()
+	{
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < mNUnlocked ; i++) {
+			str.append(IdxToEmoji(1+i*3));
+		}
+		return str.toString();
 	}
 
 	// TODO: Remove

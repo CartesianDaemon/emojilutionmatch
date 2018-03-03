@@ -449,7 +449,7 @@ public class SudokuBoardView extends View {
 							cellValuePaint = mCellValueInvalidPaint;
 						}
 
-						canvas.drawText(mCells.FoodIntToString(value),//String.valueOf((char)('A'+value-1)),
+						canvas.drawText(mCells.IdxToEmoji(value),//String.valueOf((char)('A'+value-1)),
 								cellLeft + mNumberLeft,
 								cellTop + mNumberTop - numberAscent,
 								cellValuePaint);
