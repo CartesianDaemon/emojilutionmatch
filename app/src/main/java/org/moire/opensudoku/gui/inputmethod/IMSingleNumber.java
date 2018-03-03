@@ -64,7 +64,8 @@ public class IMSingleNumber extends InputMethod {
 	private int mEditMode = MODE_EDIT_VALUE;
 
 	private TextView mTxtScore;
-	private TextView mTxtNextFood;
+	private TextView mTxtNextEmoji;
+	private TextView mTxtUnlocked;
 
 	private Handler mGuiHandler;
 	//private Map<Integer, Button> mNumberButtons;
@@ -126,7 +127,8 @@ public class IMSingleNumber extends InputMethod {
 		View controlPanel = inflater.inflate(R.layout.im_single_number, null);
 
 		mTxtScore = (TextView) controlPanel.findViewById(R.id.score);
-		mTxtNextFood = (TextView) controlPanel.findViewById(R.id.next_food);
+		mTxtNextEmoji = (TextView) controlPanel.findViewById(R.id.next_emoji);
+		mTxtUnlocked = (TextView) controlPanel.findViewById(R.id.unlocked);
 
 		return controlPanel;
 	}
@@ -162,7 +164,8 @@ public class IMSingleNumber extends InputMethod {
 
 	private void update() {
 		mTxtScore.setText("Score: " + String.valueOf( mGame.getCells().getScore()  ));
-		mTxtNextFood.setText("Next tile: " + mGame.getCells().getNextFoodString());
+		mTxtNextEmoji.setText("Next tile: " + mGame.getCells().getNextFoodString());
+		mTxtUnlocked.setText("Unlocked: " + mGame.getCells().getNextFoodString());
 
 		switch (mEditMode) {
 			//case MODE_EDIT_NOTE:

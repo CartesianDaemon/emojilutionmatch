@@ -32,7 +32,26 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/next_food"
+            android:id="@+id/next_emoji"
+            android:textSize="32sp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="30sp"
+            android:focusableInTouchMode="true"
+            android:layout_weight="1"
+            android:text="next_food" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/unlocked"
             android:textSize="32sp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
