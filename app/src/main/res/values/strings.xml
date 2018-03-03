@@ -105,10 +105,8 @@
 	<string name="help">Help</string>
 	<string name="that_is_all">That\'s all</string>
 
-
-	<string name="first_run_hint">There are several input modes which you can use to fill in the puzzle. In order to
-		help you get familiar with these modes there will be several hints displayed as you go through them.\n\nYou can
-		disable these hints in game settings.\n
+	<string name="first_run_hint">\nWalk around with GPS enabled.\n\nClick on the highlighted square to place the next
+		emoji and try to make a line of three.\n\nIf you can\'t walk around, try enabling cheat mode.\n
 	</string>
 	<string name="im_popup_hint">You\'re now in the
 		<i>Popup</i>

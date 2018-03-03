@@ -141,7 +141,7 @@ public class IMControlPanel extends LinearLayout {
 			activeMethod.activate();
 
 			if (mHintsQueue != null) {
-				mHintsQueue.showOneTimeHint(activeMethod.getInputMethodName(), activeMethod.getNameResID(), activeMethod.getHelpResID());
+				// mHintsQueue.showOneTimeHint(activeMethod.getInputMethodName(), activeMethod.getNameResID(), activeMethod.getHelpResID());
 			}
 		}
 	}
