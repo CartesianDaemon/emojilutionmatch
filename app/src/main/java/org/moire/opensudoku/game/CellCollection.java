@@ -21,7 +21,6 @@
 package org.moire.opensudoku.game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -162,7 +161,7 @@ public class CellCollection {
 			int evolved_value = evolveTo(old_val);
 
 			// TODO: Move to separate function
-			if ( old_val%3==0 && old_val/3==mNUnlocked && old_val < food_vals.length - 1)
+			if ( old_val%3==0 && old_val/3==mNUnlocked && old_val < emoji_chars.length - 1)
 			{
 				++mNUnlocked; // Unlock new set of three
 			}
@@ -257,16 +256,19 @@ public class CellCollection {
 		return score;
 	}
 
-	// enum TileKey {	NONE,	EGG, CHICK, HEN,
-	// 							LIZARD, SNAKE, DRAGON
-	// 							SHELL, SHRIMP, OCTOPUS }
-	private String[] food_vals = {"",	"\uD83D\uDC23","\uD83D\uDC24","\uD83D\uDC14",
-										//"\uD83E\uDD8E","\uD83D\uDC0D","\uD83D\uDC09","\uD83D\uDC9A", // lizard snake dragon
-										"\uD83D\uDC0D","\uD83D\uDC0A","\uD83D\uDC09",
-										// "\uD83D\uDC1A","\uD83E\uDD90","\uD83D\uDC19","\uD83D\uDC99",}; shell squid octopus
-										"\uD83D\uDC1F","\uD83D\uDC2C","\uD83D\uDC33"
-										};
-			// "\uD83C\uDF4F","\uD83C\uDF4C","\uD83E\uDD55","\uD83C\uDF69", "\uD83E\uDD5A", "F","G","H","I"}; // Was: fruit/food
+	private String[] emoji_chars = {
+			"", // empty
+			"\uD83D\uDC23", "\uD83D\uDC24", "\uD83D\uDC14", // egg, chick, hen
+			"\uD83D\uDC29", "\uD83D\uDC15", "\uD83D\uDC3A", // poodle, dog, wolf face
+			"\uD83D\uDC08", "\uD83D\uDC05", "\uD83E\uDD81", // cat, tiger, lion face
+			"\uD83C\uDFA0", "\uD83D\uDC0E", "\uD83E\uDD84", // carousel horse, horse, unicorn face
+			"\uD83D\uDEA3", "⛵", "\uD83D\uDEA2", // rowboat, sailboat, ship
+			"\uD83C\uDF30", "\uD83C\uDF31", "\uD83C\uDF32", // chestnut seedling evergreen tree
+			"\uD83D\uDC1C", "\uD83D\uDD77", "\uD83E\uDD82", // ant, spider, scorpion
+			"\uD83D\uDC1A", "\uD83E\uDD90", "\uD83D\uDC19", // shell, shrimp, octopus
+			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon
+			"\uD83D\uDE81", "✈", "\uD83D\uDE80"  // helicopter, airplane, rocket
+	};
 
 	private int[] getInitialCandidates()
 	{
@@ -297,7 +299,7 @@ public class CellCollection {
 
 	public String FoodIntToString(int value)
 	{
-		return food_vals[value];
+		return emoji_chars[value];
 	}
 
 	private int evolveTo(int value)
