@@ -38,6 +38,8 @@ public class CellCollection {
 
 	public static final int SUDOKU_SIZE = 9;
 
+	private static final boolean enable_testing = false;
+
 	/**
 	 * String is expected to be in format "00002343243202...", where each number represents
 	 * cell value, no other information can be set using this method.
@@ -106,7 +108,7 @@ public class CellCollection {
 		int[] candidates = getInitialCandidates();
 		while (next_food.size() < next_size)
 		{
-			int idx = rand.nextInt(candidates.length);
+			int idx = enable_testing ? candidates.length - 1 : rand.nextInt(candidates.length);
 			next_food.push(candidates[idx]);
 		}
 	}
@@ -155,8 +157,6 @@ public class CellCollection {
 			for (yb = y0; yb < 9 && isMatch(getCell(x0, yb).getValue(), hint_cell.getValue()); yb++)
 				;
 
-			// TODO: Deal with hearts. Only match if there's one of each. Give bonus for different types?
-
 			int old_val =hint_cell.getValue();
 			int evolved_value = evolveTo(old_val);
 
@@ -166,21 +166,23 @@ public class CellCollection {
 				++mNUnlocked; // Unlock new set of three
 			}
 
-			if (xb - xa - 1 >= 3) {
+			int full_set_size = enable_testing ? 2 : 3; // Change to 1 for testing
+
+			if (xb - xa - 1 >= full_set_size) {
 				for (int x = xa + 1; x < xb; x++) {
 					Cell cell = getCell(x, y0);
 					d_score += scoreForTile(cell.getValue());
 					getCell(x, y0).setValue(0);
 				}
 			}
-			if (yb - ya - 1 >= 3) {
+			if (yb - ya - 1 >= full_set_size) {
 				for (int y = ya + 1; y < yb; y++) {
 					d_score += scoreForTile(getCell(x0, y).getValue());
 					getCell(x0, y).setValue(0);
 				}
 			}
 
-			if (xb - xa - 1 >= 3 || yb - ya - 1 >= 3)
+			if (xb - xa - 1 >= full_set_size || yb - ya - 1 >= full_set_size)
 			{
 				hint_cell.setValue(evolved_value);
 				more_to_do++;
@@ -267,20 +269,20 @@ public class CellCollection {
 			"\uD83D\uDC1C", "\uD83D\uDD77", "\uD83E\uDD82", // ant, spider, scorpion
 			"\uD83D\uDC1A", "\uD83E\uDD90", "\uD83D\uDC19", // shell, shrimp, octopus
 			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon
-			"\uD83D\uDE81", "✈", "\uD83D\uDE80"  // helicopter, airplane, rocket
+			"\uD83D\uDE81", "\uD83D\uDEE9️", "\uD83D\uDE80"  // helicopter, airplane, rocket
 	};
 
 	private int[] getInitialCandidates()
 	{
-		int[] possibles = {1,4,7};
 		int[] ret = new int[mNUnlocked];
-		for(int i=0;i<mNUnlocked;++i) ret[i] = possibles[i]; // TODO: Proper syntax for this
+		for(int i=0;i<mNUnlocked;++i) ret[i] = 3*i+1; // TODO: Proper syntax for this
 		return ret;
 	}
 
 	private Boolean isMatch(int aa, int bb)
 	{
 		if (aa==0 || bb==0) return false;
+		// if (enable_testing) return true;
 		return aa==bb;
 	}
 
@@ -349,6 +351,13 @@ public class CellCollection {
 	{
 		mCheatMode = mCheatMode>0 ? 0 : 1;
 		onChange();
+	}
+
+	public void reset()
+	{
+		// TODO: Call this function from constructor instead of setting score manually
+		mNUnlocked = 1;
+		score = 0;
 	}
 
 	/**

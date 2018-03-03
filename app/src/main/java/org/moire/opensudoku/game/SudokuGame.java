@@ -283,6 +283,7 @@ public class SudokuGame {
 				cell.mHighlight = false;
 			}
 		}
+		mCells.reset();
 		validate();
 		setTime(0);
 		setLastPlayed(0);
