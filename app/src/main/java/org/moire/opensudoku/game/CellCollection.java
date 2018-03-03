@@ -270,7 +270,7 @@ public class CellCollection {
 			"\uD83D\uDC1A", "\uD83E\uDD90", "\uD83D\uDC19", // shell, shrimp, octopus
 			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon
 			"\uD83D\uDE81", "\uD83D\uDEE9️", "\uD83D\uDE80",  // helicopter, airplane, rocket
-			"\uD83D\uDC7D", "\uD83D\uDEF8", "\uD83D\uDC7E", // alien, flying saucer, alien monster
+//			"\uD83D\uDC7D", "\uD83D\uDEF8", "\uD83D\uDC7E", // alien, flying saucer (oops unicode 10 only), alien monster
 			"\uD83C\uDF1F", "\uD83C\uDF20", "✨", // star, shooting star, sparkles
 			"\uD83D\uDC80", "\uD83D\uDC7B", "\uD83D\uDE08", // skull, ghost, devil
 			"\uD83C\uDFB5", "\uD83C\uDFB6", "\uD83C\uDFBC" // music note, notes, score
@@ -336,7 +336,7 @@ public class CellCollection {
 	public String getUnlockedEmojisString()
 	{
 		StringBuilder str = new StringBuilder();
-		for (int idx = 1; idx <= (enable_testing ? emoji_chars.length-1: 1+mNUnlocked*3) ; idx+=3) {
+		for (int idx = 1; idx <= (enable_testing ? emoji_chars.length-1: 1+(mNUnlocked-1)*3) ; idx+=3) {
 			str.append(IdxToEmoji(idx));
 		}
 		return str.toString();
@@ -374,6 +374,8 @@ public class CellCollection {
 		// TODO: Call this function from constructor instead of setting score manually
 		mNUnlocked = 1;
 		score = 0;
+		next_food.clear();
+		fillNext();
 	}
 
 	/**
@@ -526,6 +528,7 @@ public class CellCollection {
 		CellCollection cellCollection = new CellCollection(cells);
 		cellCollection.mNUnlocked = Integer.parseInt(data.nextToken());
 		cellCollection.mCheatMode = Integer.parseInt(data.nextToken());
+		cellCollection.score= Integer.parseInt(data.nextToken());
 		return cellCollection;
 	}
 
@@ -610,6 +613,7 @@ public class CellCollection {
 		}
 		data.append(mNUnlocked).append("|");
 		data.append(mCheatMode).append("|");
+		data.append(score).append("|");
 	}
 
 	private static Pattern DATA_PATTERN_VERSION_PLAIN = Pattern.compile("^\\d{81}$");
