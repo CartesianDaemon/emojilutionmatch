@@ -336,8 +336,8 @@ public class CellCollection {
 	public String getUnlockedEmojisString()
 	{
 		StringBuilder str = new StringBuilder();
-		for (int i = 0; i < mNUnlocked ; i++) {
-			str.append(IdxToEmoji(1+i*3));
+		for (int idx = 1; idx <= (enable_testing ? emoji_chars.length-1: 1+mNUnlocked*3) ; idx+=3) {
+			str.append(IdxToEmoji(idx));
 		}
 		return str.toString();
 	}
