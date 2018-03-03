@@ -269,7 +269,11 @@ public class CellCollection {
 			"\uD83D\uDC1C", "\uD83D\uDD77", "\uD83E\uDD82", // ant, spider, scorpion
 			"\uD83D\uDC1A", "\uD83E\uDD90", "\uD83D\uDC19", // shell, shrimp, octopus
 			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon
-			"\uD83D\uDE81", "\uD83D\uDEE9️", "\uD83D\uDE80"  // helicopter, airplane, rocket
+			"\uD83D\uDE81", "\uD83D\uDEE9️", "\uD83D\uDE80",  // helicopter, airplane, rocket
+			"\uD83D\uDC7D", "\uD83D\uDEF8", "\uD83D\uDC7E", // alien, flying saucer, alien monster
+			"\uD83C\uDF1F", "\uD83C\uDF20", "✨", // star, shooting star, sparkles
+			"\uD83D\uDC80", "\uD83D\uDC7B", "\uD83D\uDE08", // skull, ghost, devil
+			"\uD83C\uDFB5", "\uD83C\uDFB6", "\uD83C\uDFBC" // music note, notes, score
 	};
 
 	private int[] getInitialCandidates()
@@ -291,7 +295,19 @@ public class CellCollection {
 		//if (n==0) return 0;
 		//Integer[] scores = {10,30,90,500};
 		//return scores[(n-1)%4];
-		return 10*n;
+		if (n<=30) {
+			return 10 * n;
+		}
+		else {
+			int set = (n-31)/3; // 0 = first set past rocket, 1 = second set
+			int elem = n-31-set*3; // 0 = first element of set, 1 = second etc
+			return 1000 * (int)Math.pow(10,set) * (1+elem);
+			// Scores look like:
+			// 1000 -> 2000 -> 3000
+			// 10,000 -> 20,000 -> 30,000
+			// etc
+		}
+
 	}
 
 	private int scoreForNFoods(int n)
