@@ -46,7 +46,7 @@ public class SudokuImportActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.import_sudoku);
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON,
-				R.mipmap.ic_launcher);
+				R.mipmap.ic_emoji_launcher);
 
 		ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
 

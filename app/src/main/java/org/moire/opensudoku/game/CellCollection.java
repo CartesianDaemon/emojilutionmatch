@@ -268,7 +268,7 @@ public class CellCollection {
 			"\uD83C\uDF30", "\uD83C\uDF31", "\uD83C\uDF32", // chestnut seedling evergreen tree
 			"\uD83D\uDC1C", "\uD83D\uDD77", "\uD83E\uDD82", // ant, spider, scorpion
 			"\uD83D\uDC1A", "\uD83E\uDD90", "\uD83D\uDC19", // shell, shrimp, octopus
-			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon
+			"\uD83D\uDC0D", "\uD83D\uDC0A", "\uD83D\uDC09", // lizard, snake, dragon (switch back to lizard?)
 			"\uD83D\uDE81", "\uD83D\uDEE9️", "\uD83D\uDE80",  // helicopter, airplane, rocket
 //			"\uD83D\uDC7D", "\uD83D\uDEF8", "\uD83D\uDC7E", // alien, flying saucer (oops unicode 10 only), alien monster
 			"\uD83C\uDF1F", "\uD83C\uDF20", "✨", // star, shooting star, sparkles

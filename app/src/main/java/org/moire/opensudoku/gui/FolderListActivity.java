@@ -214,7 +214,7 @@ public class FolderListActivity extends ListActivity {
 				String versionName = AndroidUtils.getAppVersionName(getApplicationContext());
 				versionLabel.setText(getString(R.string.version, versionName));
 				return new AlertDialog.Builder(this)
-						.setIcon(R.mipmap.ic_launcher)
+						.setIcon(R.mipmap.ic_emoji_launcher)
 						.setTitle(R.string.app_name)
 						.setView(aboutView)
 						.setPositiveButton("OK", null)
