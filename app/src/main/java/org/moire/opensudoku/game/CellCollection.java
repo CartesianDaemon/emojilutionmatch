@@ -357,8 +357,8 @@ public class CellCollection {
 	public void setLocation(double lat, double lon)
 	{
 		int cell_width_m = 10;
-		int y = SUDOKU_SIZE - 1 - ((int)(lat*111111/cell_width_m))%9;
-		int x = ((int)(lon*60000/cell_width_m))%9;
+		int y = SUDOKU_SIZE - 1 - (9+((int)(lat*111111/cell_width_m))%9)%9;
+		int x = (9+((int)(lon*60000/cell_width_m))%9)%9;
 		selectedCell = mCells[y][x];
 		onChange();
 	}
